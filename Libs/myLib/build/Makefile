@@ -5,7 +5,7 @@
 
 GCC          = gcc
 C99          = -std=c99
-CFLO         = -c -Wall -Werror -fpic
+CFLO         = -c -Wall -g -Werror -fpic
 CFLSO        = -shared -o
 CIN          = -I../include/
 CINLIB       = -I../../include/

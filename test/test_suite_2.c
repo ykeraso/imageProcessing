@@ -72,8 +72,27 @@ Boolean test_suite_2_TEST_2(){
 	if IS_NULL(grey.img){
 		ERROR("grey picture is not read from file");
 	}
-	GREY res = GREY_Init();
-	OK ret = SimpleApplyFilter_3x3_Grey(grey, &res, vertical, 0);
+	GREY res;
+	OK ret = SimpleApplyFilter_3x3_Grey(grey, &res, vertical, 1);
+	ret = RAW_Output_GREY_ToFile(&res, bmpImage, "waterfall_grey_1920_2520_ver_1.bmp");
+	GREY_Destroy(&res);
+
+	ret = SimpleApplyFilter_3x3_Grey(grey, &res, horizontal, 1);
+	ret = RAW_Output_GREY_ToFile(&res, bmpImage, "waterfall_grey_1920_2520_hor_1.bmp");
+	GREY_Destroy(&res);
+
+	ret = SimpleApplyFilter_3x3_Grey(grey, &res, diagNE, 1);
+	ret = RAW_Output_GREY_ToFile(&res, bmpImage, "waterfall_grey_1920_2520_diagNE_1.bmp");
+	GREY_Destroy(&res);
+
+	ret = SimpleApplyFilter_3x3_Grey(grey, &res, diagNW, 1);
+	ret = RAW_Output_GREY_ToFile(&res, bmpImage, "waterfall_grey_1920_2520_diagNW_1.bmp");
+	GREY_Destroy(&res);
+
+	ret = SimpleApplyFilter_3x3_Grey(grey, &res, def, 1);
+	ret = RAW_Output_GREY_ToFile(&res, bmpImage, "waterfall_grey_1920_2520_def_1.bmp");
+	GREY_Destroy(&res);
+
 	GREY_Destroy(&grey);
 	return ret == __SUCCESS__ && grey.init == 0;
 }

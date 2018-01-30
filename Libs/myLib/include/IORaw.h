@@ -10,7 +10,7 @@ typedef enum{
 
 OK RAW_Input_RGB_FromFile(char *raw_image_fn, RGB *rgb);
 OK RAW_Input_GREY_FromFile(char *raw_image_fn, GREY *grey);
-OK RAW_Output_RGB_ToFile(RGB *rgb, ImageType itype);
-OK RAW_Output_GREY_ToFile(GREY *grey, ImageType itype);
+OK RAW_Output_RGB_ToFile(RGB *rgb, ImageType itype, const char *fname);
+OK RAW_Output_GREY_ToFile(GREY *grey, ImageType itype, const char *fname);
 
 #endif // __IO_RAW__

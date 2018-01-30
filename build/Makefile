@@ -16,7 +16,7 @@ MKDIR_P=mkdir -p
 OUTDIR=../obj/
 
 GCC=gcc
-GCCFLAGS=-Wall -O3 -o
+GCCFLAGS=-Wall -g -O3 -o 
 
 CIN=-I ../include
 CINLIB= -I ../Libs/include

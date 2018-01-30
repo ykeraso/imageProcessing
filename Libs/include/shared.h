@@ -8,8 +8,8 @@
 #define IS_NOT_NULL(a)   ( (a) != NULL )
 #define INIT(buffer, size) memset((buffer), 0, (size) )
 
-typedef char GREY_PIXEL;
-typedef char RGB_PIXEL[3];
+typedef unsigned char GREY_PIXEL;
+typedef unsigned char RGB_PIXEL[3];
 
 typedef struct _Sgrey{
 	unsigned int init : 1;

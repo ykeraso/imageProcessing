@@ -99,19 +99,19 @@ Boolean test_suite_1_TEST_6(){
 
 Boolean test_suite_1_TEST_7(){
 	TRACE_IN;
-	if ( RAW_Output_RGB_ToFile( NULL, 3 ) != Bad_input ){
+	if ( RAW_Output_RGB_ToFile( NULL, 3, NULL) != Bad_input ){
 		ERROR("Fail");
 		return F;
 	}
-	if ( RAW_Output_RGB_ToFile(&rgb, 3) != Bad_input ){
+	if ( RAW_Output_RGB_ToFile(&rgb, 3, NULL) != Bad_input ){
 		ERROR("Fail");
 		return F;
 	}
-	if ( RAW_Output_RGB_ToFile(&rgb, bmpImage) != __SUCCESS__ ){
+	if ( RAW_Output_RGB_ToFile(&rgb, bmpImage, NULL) != __SUCCESS__ ){
 		ERROR("Fail");
 		return F;
 	}
-	if ( RAW_Output_RGB_ToFile(&rgb, rawImage) != __SUCCESS__ ){
+	if ( RAW_Output_RGB_ToFile(&rgb, rawImage, NULL) != __SUCCESS__ ){
 		ERROR("Fail");
 		return F;
 	}
@@ -120,19 +120,19 @@ Boolean test_suite_1_TEST_7(){
 
 Boolean test_suite_1_TEST_8(){
 	TRACE_IN;
-	if ( RAW_Output_GREY_ToFile( NULL, 4 ) != Bad_input ){
+	if ( RAW_Output_GREY_ToFile( NULL, 4, NULL ) != Bad_input ){
 		ERROR("Fail");
 		return F;
 	}
-	if ( RAW_Output_GREY_ToFile( &grey, 4 ) != Bad_input ){
+	if ( RAW_Output_GREY_ToFile( &grey, 4, NULL ) != Bad_input ){
 		ERROR("Fail");
 		return F;
 	}
-	if ( RAW_Output_GREY_ToFile( &grey, bmpImage) != __SUCCESS__ ){
+	if ( RAW_Output_GREY_ToFile( &grey, bmpImage, NULL) != __SUCCESS__ ){
 		ERROR("Fail");
 		return F;
 	}
-	if ( RAW_Output_GREY_ToFile( &grey, rawImage) != __SUCCESS__ ){
+	if ( RAW_Output_GREY_ToFile( &grey, rawImage, NULL) != __SUCCESS__ ){
 		ERROR("Fail");
 		return F;
 	}

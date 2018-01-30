@@ -318,34 +318,42 @@ void  SetBitmapInfoHeader(BITMAPFILEHEADER * g_BitmapFileHeader,BITMAPINFOHEADER
     ShortSwapA((unsigned short*)&(g_BitmapInfoHeader->biBitCount));
 }
 
-OK RAW_Output_RGB_ToFile(RGB *rgb, ImageType itype){
+OK RAW_Output_RGB_ToFile(RGB *rgb, ImageType itype, const char *fname){
 	TRACE_IN;
 	if IS_NULL(rgb){
 		ERROR("Bad input arguments");
 		TRACE_OUT;
 		return Bad_input;
 	}
-	int nameLen = strlen(rgb->fname);
-	switch( itype )
+	int nameLen;
+	char l_fname[80];
+	if IS_NULL ( fname )
 	{
-		case rawImage:
-			rgb->fname[nameLen-3] = 'r';
-			rgb->fname[nameLen-2] = 'a';
-			rgb->fname[nameLen-1] = 'w';
-			LOG("Output rawImage: %s", rgb->fname);
-			break;
+		strcpy(l_fname, rgb->fname);
+		nameLen = strlen(l_fname);
+		switch( itype )
+		{
+			case rawImage:
+				l_fname[nameLen-3] = 'r';
+				l_fname[nameLen-2] = 'a';
+				l_fname[nameLen-1] = 'w';
+				LOG("Output rawImage: %s", l_fname);
+				break;
 
-		case bmpImage:
-			rgb->fname[nameLen-3] = 'b';
-			rgb->fname[nameLen-2] = 'm';
-			rgb->fname[nameLen-1] = 'p';
-			LOG("Output bmpImage: %s", rgb->fname);
-			break;
+			case bmpImage:
+				l_fname[nameLen-3] = 'b';
+				l_fname[nameLen-2] = 'm';
+				l_fname[nameLen-1] = 'p';
+				LOG("Output bmpImage: %s", l_fname);
+				break;
 
-		default:
-			ERROR("Bad input arguments (ImageType)");
-			TRACE_OUT;
-			return Bad_input;
+			default:
+				ERROR("Bad input arguments (ImageType)");
+				TRACE_OUT;
+				return Bad_input;
+		}
+	}else{
+		strcpy(l_fname, fname);
 	}
 	FILE *fp;
 	if IS_NULL (fp = fopen(rgb->fname,"wb+") )
@@ -400,37 +408,45 @@ OK RAW_Output_RGB_ToFile(RGB *rgb, ImageType itype){
 	return __SUCCESS__;
 }
 
-OK RAW_Output_GREY_ToFile(GREY *grey, ImageType itype){
+OK RAW_Output_GREY_ToFile(GREY *grey, ImageType itype, const char *fname){
 	TRACE_IN;
 	if IS_NULL(grey){
 		ERROR("Bad input arguments");
 		TRACE_OUT;
 		return Bad_input;
 	}
-	int nameLen = strlen(grey->fname);
-	switch( itype )
+	int nameLen;
+	char l_fname[80];
+	if IS_NULL(fname)
 	{
-		case rawImage:
-			grey->fname[nameLen-3] = 'r';
-			grey->fname[nameLen-2] = 'a';
-			grey->fname[nameLen-1] = 'w';
-			LOG("Output rawImage: %s", grey->fname);
-			break;
+		strcpy(l_fname, grey->fname);
+		nameLen = strlen(l_fname);
+		switch( itype )
+		{
+			case rawImage:
+				l_fname[nameLen-3] = 'r';
+				l_fname[nameLen-2] = 'a';
+				l_fname[nameLen-1] = 'w';
+				LOG("Output rawImage: %s", l_fname);
+				break;
 
-		case bmpImage:
-			grey->fname[nameLen-3] = 'b';
-			grey->fname[nameLen-2] = 'm';
-			grey->fname[nameLen-1] = 'p';
-			LOG("Output bmpImage: %s", grey->fname);
-			break;
+			case bmpImage:
+				l_fname[nameLen-3] = 'b';
+				l_fname[nameLen-2] = 'm';
+				l_fname[nameLen-1] = 'p';
+				LOG("Output bmpImage: %s", l_fname);
+				break;
 
-		default:
-			ERROR("Bad input arguments (ImageType)");
-			TRACE_OUT;
-			return Bad_input;
+			default:
+				ERROR("Bad input arguments (ImageType)");
+				TRACE_OUT;
+				return Bad_input;
+		}
+	}else{
+		strcpy(l_fname, fname);
 	}
 	FILE *fp;
-	if IS_NULL (fp = fopen(grey->fname,"wb+") )
+	if IS_NULL (fp = fopen(l_fname,"wb+") )
 	{
 		fclose(fp);
 		ERROR("Unable to create the bitmap file");
